@@ -1,0 +1,17 @@
+version: "2"
+
+services:
+  web:
+    image: tutum/hello-world
+    ports:
+      - "8080:80"
+    volumes:
+      - /mnt/public:/mnt-data
+      - sshvolume:/ssh-data
+
+volumes:
+  sshvolume:
+    driver: sshfs
+    driver_opts:
+      sshcmd: "user@example.com:/home/user/public"
+      password: "example"
